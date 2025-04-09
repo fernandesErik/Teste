@@ -7,17 +7,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 
 //Uma entidade é um modelo que liga o Java ao banco de dados, permitindo salvar, buscar e modificar registros sem precisar escrever SQL manualmente
 
-@Entity     //  Indica que a classe será mapeada para uma tabela no banco.
+@Entity // Indica que a classe será mapeada para uma tabela no banco.
 @Table(name = "categoria") // Especifica que essa entidade será salva na tabela chamada "categoria".
-public class Categoria { 
-	
+public class Categoria {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY ) // Definem que o atributo codigo é a chave primária e será gerado automaticamente pelo banco.
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Definem que o atributo codigo é a chave primária e será
+														// gerado automaticamente pelo banco.
 	private Long codigo;
-	
+
+	@NotNull
+	@Size(min = 3, max = 50)
 	private String nome;
 
 	public Long getCodigo() {
@@ -36,13 +42,14 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	 //hashCode() → Gera um número único baseado no codigo, útil para coleções como HashSet e HashMap.
+	// hashCode() → Gera um número único baseado no codigo, útil para coleções como
+	// HashSet e HashMap.
 	@Override
 	public int hashCode() {
 		return Objects.hash(codigo);
 	}
-	
-     // equals() → Diz que dois objetos são iguais se tiverem o mesmo codigo.
+
+	// equals() → Diz que dois objetos são iguais se tiverem o mesmo codigo.
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,7 +61,5 @@ public class Categoria {
 		Categoria other = (Categoria) obj;
 		return Objects.equals(codigo, other.codigo);
 	}
-	
-	
 
 }

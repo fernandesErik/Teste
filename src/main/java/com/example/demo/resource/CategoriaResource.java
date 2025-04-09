@@ -17,6 +17,7 @@ import com.example.demo.model.Categoria;
 import com.example.demo.repository.CategoriaRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 
 @RestController // Indica que essa classe é um controlador REST, ou seja, ela recebe e responde
 				// requisições HTTP (como GET, POST, PUT, DELETE).
@@ -35,10 +36,11 @@ public class CategoriaResource {
 
 		return categoriaRepository.findAll();
 
+		
 	}
 
 	@PostMapping
-	public ResponseEntity<Categoria> criar(@RequestBody Categoria categoria, HttpServletResponse response) {
+	public ResponseEntity<Categoria> criar(@Valid  @RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria categoriasalva = categoriaRepository.save(categoria);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
