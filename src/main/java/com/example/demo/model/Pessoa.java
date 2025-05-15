@@ -17,7 +17,7 @@ public class Pessoa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long codigo;
 
 	@NotNull
 	@Size(min = 3, max = 50)
@@ -29,12 +29,12 @@ public class Pessoa {
     @NotNull
 	private boolean ativo;
 
-	public Long getId() {
-		return id;
+	public Long getcodigo() {
+		return codigo;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -63,7 +63,7 @@ public class Pessoa {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(codigo);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class Pessoa {
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(codigo, other.codigo);
 	}
 
 
